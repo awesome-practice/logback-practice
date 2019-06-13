@@ -1,0 +1,10 @@
+<configuration debug="true">
+    <!--<include file="src/main/resources/included/for-including.xml"/>-->
+    <include resource="included/for-includedConfig.xml"/><!-- classpath-->
+    <!--<include url="http://some.host.com/includedConfig.xml"/>-->
+
+    <root level="DEBUG">
+        <appender-ref ref="includedConsole" />
+    </root>
+
+</configuration>

@@ -1,0 +1,18 @@
+<included>
+    <property name="INCLUDING_CONFIG" value="including-config"/>
+
+    <appender name="APPENDER_INCLUDING_CONFIG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${INCLUDING_CONFIG}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/${PREFIX_HISTORY}${INCLUDING_CONFIG}/${INCLUDING_CONFIG}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>1KB</maxFileSize>
+            <maxHistory>5</maxHistory><!-- 5 day, unit inferred from pattern -->
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+
+    </appender>
+</included>

@@ -1,0 +1,17 @@
+= config file priority
+1. logback-test.xml
+2. logback.xml
+
+
+= read track
+done: https://logback.qos.ch/manual/configuration.html  
+at: https://logback.qos.ch/manual/appenders.html
+
+note: ch1\2 skipped
+
+= official home
+https://logback.qos.ch/
+
+
+= AsciiDoc doc
+https://powerman.name/doc/asciidoc

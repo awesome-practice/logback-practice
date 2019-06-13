@@ -1,0 +1,77 @@
+<configuration debug="true">
+
+    <property name="LOG_HOME" value="logs"/>
+    <property name="LOG_FILE_NAME_COMMON_ERROR" value="common-error-time-based"/>
+    <property name="COMMON_TIME_BASED" value="common-time-based"/>
+    <property name="PREFIX_HISTORY" value="history-"/>
+
+    <include resource="included/for-including.xml"/><!-- classpath-->
+    <!--<include file="src/main/resources/included/for-including.xml"/>-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/rolling.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>logs/history-rolling/rolling.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>1KB</maxFileSize>
+            <maxHistory>5</maxHistory><!-- 5 day, unit inferred from pattern -->
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+
+    </appender>
+
+
+    <appender name="COMMON_FILE_TIME_BASED" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${COMMON_TIME_BASED}.log</file>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${PREFIX_HISTORY}${COMMON_TIME_BASED}/${COMMON_TIME_BASED}.%d{yyyy-MM-dd_HH-mm-ss}.log</fileNamePattern>
+            <maxHistory>5</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+
+    </appender>
+
+    <appender name="COMMON_ERROR_FILE_TIME_BASED" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <file>${LOG_HOME}/${LOG_FILE_NAME_COMMON_ERROR}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %msg%n</Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                ${LOG_HOME}/${PREFIX_HISTORY}${LOG_FILE_NAME_COMMON_ERROR}/${LOG_FILE_NAME_COMMON_ERROR}-%d{yyyy-MM-dd_HH-mm-ss}.log
+            </FileNamePattern>
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- ===========  loggers ============== -->
+    <logger name="com.practice.logback.Foo" level="debug" additivity="false">
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="COMMON_FILE_TIME_BASED"/>
+        <appender-ref ref="COMMON_ERROR_FILE_TIME_BASED"/>
+        <appender-ref ref="APPENDER_INCLUDING_CONFIG"/>
+    </logger>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
