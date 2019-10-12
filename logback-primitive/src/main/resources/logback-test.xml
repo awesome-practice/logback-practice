@@ -64,7 +64,7 @@
     </appender>
 
     <!-- ===========  loggers ============== -->
-    <logger name="com.practice.logback.Foo" level="debug" additivity="false">
+    <logger name="com.practice.logback.primitive.Foo" level="debug" additivity="false">
         <appender-ref ref="ROLLING_FILE"/>
         <appender-ref ref="COMMON_FILE_TIME_BASED"/>
         <appender-ref ref="COMMON_ERROR_FILE_TIME_BASED"/>

@@ -1,4 +1,4 @@
-package com.practice.logback;
+package com.practice.logback.primitive;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;

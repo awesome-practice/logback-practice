@@ -1,10 +1,9 @@
-package com.practice.logback;
+package com.practice.logback.primitive;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class LogbackTestXml {
-    final static Logger logger = LoggerFactory.getLogger(LogbackTestXml.class);
+public class LogbackTestJava {
+    final static Logger logger = LoggerUtil.getLogger("LogbackTestJava");
 
     public static void main(String[] args) {
 //        // assume SLF4J is bound to logback in the current environment

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: logback-spring-demo
+server:
+  port: 8083
