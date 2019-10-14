@@ -3,3 +3,6 @@ spring:
     name: logback-spring-demo
 server:
   port: 8083
+logging:
+  file:
+    max-history: 1
