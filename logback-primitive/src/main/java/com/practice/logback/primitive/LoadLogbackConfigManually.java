@@ -25,7 +25,7 @@ public class LoadLogbackConfigManually {
     }
 
     private static void config3() {//recommend, let the xml file placed in the same package
-        URL resource = LoadLogbackConfigManually.class.getResource("logback5.xml");
+        URL resource = LoadLogbackConfigManually.class.getResource("logback-appender.xml");
 
         configLogback(resource);
     }

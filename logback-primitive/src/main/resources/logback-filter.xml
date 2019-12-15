@@ -43,12 +43,14 @@
             <totalSizeCap>10MB</totalSizeCap>
         </rollingPolicy>
 
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
 
     <appender name="COMMON_ERROR_FILE_TIME_BASED" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>ERROR</level>
-        </filter>
         <file>${LOG_HOME}/${LOG_FILE_NAME_COMMON_ERROR}.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %msg%n</Pattern>
@@ -61,6 +63,10 @@
             <maxHistory>7</maxHistory>
             <totalSizeCap>10MB</totalSizeCap>
         </rollingPolicy>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
     </appender>
 
     <!-- ===========  loggers ============== -->
